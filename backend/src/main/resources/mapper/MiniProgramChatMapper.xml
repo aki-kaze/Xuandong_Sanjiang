@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.MiniProgramChatMapper">
+
+    <resultMap id="SessionResultMap" type="org.example.sanjiang.entity.MiniProgramChatSession">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="title" property="title"/>
+        <result column="message_count" property="messageCount"/>
+        <result column="last_message_at" property="lastMessageAt"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <resultMap id="MessageResultMap" type="org.example.sanjiang.entity.MiniProgramChatMessage">
+        <id column="id" property="id"/>
+        <result column="session_id" property="sessionId"/>
+        <result column="role" property="role"/>
+        <result column="content" property="content"/>
+        <result column="tool_type" property="toolType"/>
+        <result column="tool_result" property="toolResult"/>
+        <result column="itinerary" property="itinerary"/>
+        <result column="extra_data" property="extraData"/>
+        <result column="msg_order" property="msgOrder"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
+    <select id="findSessionsByCondition" resultMap="SessionResultMap">
+        SELECT * FROM chat_sessions
+        <where>
+            AND status = 1
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="today != null and today == true">
+                AND DATE(created_at) = CURDATE()
+            </if>
+        </where>
+        ORDER BY last_message_at DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="countSessionsByCondition" resultType="int">
+        SELECT COUNT(*) FROM chat_sessions
+        <where>
+            AND status = 1
+            <if test="keyword != null and keyword != ''">
+                AND title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="today != null and today == true">
+                AND DATE(created_at) = CURDATE()
+            </if>
+        </where>
+    </select>
+
+    <select id="findMessagesBySessionId" resultMap="MessageResultMap">
+        SELECT * FROM chat_messages
+        WHERE session_id = #{sessionId}
+        ORDER BY msg_order ASC
+    </select>
+
+    <select id="countAllSessions" resultType="int">
+        SELECT COUNT(*) FROM chat_sessions WHERE status = 1
+    </select>
+
+    <select id="countTodaySessions" resultType="int">
+        SELECT COUNT(*) FROM chat_sessions WHERE status = 1 AND DATE(created_at) = CURDATE()
+    </select>
+
+    <select id="countAllMessages" resultType="int">
+        SELECT COUNT(*) FROM chat_messages
+    </select>
+
+    <select id="countTodayMessages" resultType="int">
+        SELECT COUNT(*) FROM chat_messages WHERE DATE(created_at) = CURDATE()
+    </select>
+
+    <select id="countMessagesByRole" resultType="java.util.HashMap">
+        SELECT role, COUNT(*) as count FROM chat_messages GROUP BY role
+    </select>
+
+    <select id="toolUsageStats" resultType="java.util.HashMap">
+        SELECT tool_type as toolType, COUNT(*) as count
+        FROM chat_messages
+        WHERE tool_type IS NOT NULL AND tool_type != ''
+        GROUP BY tool_type
+        ORDER BY count DESC
+    </select>
+
+    <select id="dailySessionStats" resultType="java.util.HashMap">
+        SELECT DATE(created_at) as date, COUNT(*) as count
+        FROM chat_sessions
+        WHERE status = 1 AND created_at >= DATE_SUB(NOW(), INTERVAL #{days} DAY)
+        GROUP BY DATE(created_at)
+        ORDER BY date
+    </select>
+
+</mapper>

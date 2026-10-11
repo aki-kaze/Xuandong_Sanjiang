@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.SensitiveWordMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.SensitiveWord">
+        <id column="id" property="id"/>
+        <result column="word" property="word"/>
+        <result column="category" property="category"/>
+        <result column="level" property="level"/>
+        <result column="hit_count" property="hitCount"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="last_hit" property="lastHit"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT id, word, category, level, hit_count, created_at, last_hit 
+        FROM sensitive_word 
+        ORDER BY level DESC, id ASC
+    </select>
+
+    <select id="findAllWords" resultType="java.lang.String">
+        SELECT word FROM sensitive_word
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT id, word, category, level, hit_count, created_at, last_hit 
+        FROM sensitive_word 
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.SensitiveWord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO sensitive_word(word, category, level) 
+        VALUES(#{word}, #{category}, #{level})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.SensitiveWord">
+        UPDATE sensitive_word 
+        SET word=#{word}, category=#{category}, level=#{level} 
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM sensitive_word WHERE id = #{id}
+    </delete>
+
+    <update id="incrementHitCount" parameterType="java.lang.String">
+        UPDATE sensitive_word
+        SET hit_count = hit_count + 1, last_hit = NOW()
+        WHERE word = #{word}
+    </update>
+
+    <select id="countTodayHits" resultType="int">
+        SELECT COALESCE(SUM(hit_count), 0) FROM sensitive_word
+        WHERE DATE(last_hit) = CURDATE()
+    </select>
+
+    <select id="countTotalHits" resultType="int">
+        SELECT COALESCE(SUM(hit_count), 0) FROM sensitive_word
+    </select>
+</mapper>

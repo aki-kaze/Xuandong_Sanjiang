@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.ExperienceOrderMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.ExperienceOrder">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="heritage_id" property="heritageId"/>
+        <result column="heritage_name" property="heritageName"/>
+        <result column="heritage_cover" property="heritageCover"/>
+        <result column="experience_type" property="experienceType"/>
+        <result column="quantity" property="quantity"/>
+        <result column="price" property="price"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="status" property="status"/>
+        <result column="contact_name" property="contactName"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="visit_date" property="visitDate"/>
+        <result column="visit_time" property="visitTime"/>
+        <result column="remark" property="remark"/>
+        <result column="cancel_reason" property="cancelReason"/>
+        <result column="confirmed_at" property="confirmedAt"/>
+        <result column="completed_at" property="completedAt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders ORDER BY id DESC
+    </select>
+
+    <select id="findByCondition" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders
+        <where>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="searchKey != null and searchKey != ''">
+                AND (order_no LIKE CONCAT('%', #{searchKey}, '%')
+                     OR heritage_name LIKE CONCAT('%', #{searchKey}, '%')
+                     OR contact_name LIKE CONCAT('%', #{searchKey}, '%'))
+            </if>
+        </where>
+        ORDER BY id DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders WHERE user_id = #{userId} ORDER BY id DESC
+    </select>
+
+    <select id="findByStatus" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders WHERE status = #{status} ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders WHERE id = #{id}
+    </select>
+
+    <select id="findByOrderNo" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders WHERE order_no = #{orderNo}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.ExperienceOrder" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO experience_orders (order_no, user_id, heritage_id, heritage_name, heritage_cover, experience_type,
+            quantity, price, total_price, status, contact_name, contact_phone, visit_date, visit_time, remark, created_at, updated_at)
+        VALUES (#{orderNo}, #{userId}, #{heritageId}, #{heritageName}, #{heritageCover}, #{experienceType},
+            #{quantity}, #{price}, #{totalPrice}, #{status}, #{contactName}, #{contactPhone}, #{visitDate}, #{visitTime}, #{remark}, #{createdAt}, #{updatedAt})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.ExperienceOrder">
+        UPDATE experience_orders
+        <set>
+            <if test="status != null">status=#{status},</if>
+            <if test="contactName != null">contact_name=#{contactName},</if>
+            <if test="contactPhone != null">contact_phone=#{contactPhone},</if>
+            <if test="visitDate != null">visit_date=#{visitDate},</if>
+            <if test="visitTime != null">visit_time=#{visitTime},</if>
+            <if test="remark != null">remark=#{remark},</if>
+            <if test="cancelReason != null">cancel_reason=#{cancelReason},</if>
+            <if test="confirmedAt != null">confirmed_at=#{confirmedAt},</if>
+            <if test="completedAt != null">completed_at=#{completedAt},</if>
+            updated_at = NOW(),
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM experience_orders WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM experience_orders
+    </select>
+
+    <select id="countByCondition" resultType="int">
+        SELECT COUNT(*) FROM experience_orders
+        <where>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+            <if test="searchKey != null and searchKey != ''">
+                AND (order_no LIKE CONCAT('%', #{searchKey}, '%')
+                     OR heritage_name LIKE CONCAT('%', #{searchKey}, '%')
+                     OR contact_name LIKE CONCAT('%', #{searchKey}, '%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="countByUserId" resultType="int">
+        SELECT COUNT(*) FROM experience_orders WHERE user_id = #{userId}
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM experience_orders WHERE status = #{status}
+    </select>
+
+    <select id="countToday" resultType="int">
+        SELECT COUNT(*) FROM experience_orders WHERE DATE(created_at) = CURDATE()
+    </select>
+
+    <select id="sumRevenue" resultType="java.math.BigDecimal">
+        SELECT IFNULL(SUM(total_price), 0) FROM experience_orders WHERE status IN ('confirmed', 'completed')
+    </select>
+
+    <select id="findRecent" resultMap="BaseResultMap">
+        SELECT * FROM experience_orders ORDER BY created_at DESC LIMIT #{limit}
+    </select>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.TicketMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Ticket">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="price" property="price"/>
+        <result column="original_price" property="originalPrice"/>
+        <result column="cover" property="cover"/>
+        <result column="valid_days" property="validDays"/>
+        <result column="description" property="description"/>
+        <result column="includes" property="includes"/>
+        <result column="notice" property="notice"/>
+        <result column="address" property="address"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM tickets WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM tickets ORDER BY id ASC
+    </select>
+
+    <select id="findByType" resultMap="BaseResultMap">
+        SELECT * FROM tickets WHERE status = 1 AND type = #{type} ORDER BY id ASC
+    </select>
+
+    <select id="findByTypeAndKeyword" resultMap="BaseResultMap">
+        SELECT * FROM tickets WHERE status = 1 AND type = #{type}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM tickets WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR type LIKE CONCAT('%', #{keyword}, '%')) ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM tickets WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Ticket" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tickets (name, type, price, original_price, cover, valid_days, description, includes, notice, status)
+        VALUES (#{name}, #{type}, #{price}, #{originalPrice}, #{cover}, #{validDays}, #{description}, #{includes}, #{notice}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Ticket">
+        UPDATE tickets SET name=#{name}, type=#{type}, price=#{price}, original_price=#{originalPrice}, cover=#{cover}, valid_days=#{validDays}, description=#{description}, includes=#{includes}, notice=#{notice}, status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM tickets WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM tickets WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM tickets
+    </select>
+
+    <select id="countByType" resultType="int">
+        SELECT COUNT(*) FROM tickets WHERE type = #{type} AND status = 1
+    </select>
+
+    <select id="countByTypeAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM tickets WHERE type = #{type} AND status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM tickets WHERE status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR type LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+</mapper>

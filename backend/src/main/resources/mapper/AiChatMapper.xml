@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.AiChatMapper">
+
+    <select id="findByCondition" resultType="org.example.sanjiang.entity.AiChat">
+        SELECT * FROM ai_chat
+        <where>
+            <if test="flagged != null">
+                AND flagged = #{flagged}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (question LIKE CONCAT('%',#{keyword},'%') OR answer LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="today != null and today == true">
+                AND DATE(create_time) = CURDATE()
+            </if>
+        </where>
+        ORDER BY create_time DESC
+        LIMIT #{size} OFFSET #{offset}
+    </select>
+
+    <select id="countByCondition" resultType="int">
+        SELECT COUNT(*) FROM ai_chat
+        <where>
+            <if test="flagged != null">
+                AND flagged = #{flagged}
+            </if>
+            <if test="keyword != null and keyword != ''">
+                AND (question LIKE CONCAT('%',#{keyword},'%') OR answer LIKE CONCAT('%',#{keyword},'%'))
+            </if>
+            <if test="today != null and today == true">
+                AND DATE(create_time) = CURDATE()
+            </if>
+        </where>
+    </select>
+
+</mapper>

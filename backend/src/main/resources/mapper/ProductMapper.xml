@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.ProductMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Product">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category" property="category"/>
+        <result column="price" property="price"/>
+        <result column="cover" property="cover"/>
+        <result column="desc" property="desc"/>
+        <result column="full_desc" property="fullDesc"/>
+        <result column="tags" property="tags"/>
+        <result column="sales" property="sales"/>
+        <result column="hot" property="hot"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM products WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM products ORDER BY id ASC
+    </select>
+
+    <select id="findByCategory" resultMap="BaseResultMap">
+        SELECT * FROM products WHERE status = 1 AND category = #{category} ORDER BY id ASC
+    </select>
+
+    <select id="findByCategoryAndKeyword" resultMap="BaseResultMap">
+        SELECT * FROM products WHERE status = 1 AND category = #{category}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR `desc` LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM products WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR category LIKE CONCAT('%', #{keyword}, '%')) ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM products WHERE id = #{id} AND status = 1
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Product" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO products (name, category, price, cover, `desc`, full_desc, tags, sales, hot, status)
+        VALUES (#{name}, #{category}, #{price}, #{cover}, #{desc}, #{fullDesc}, #{tags}, #{sales}, #{hot}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Product">
+        UPDATE products SET name=#{name}, category=#{category}, price=#{price}, cover=#{cover}, `desc`=#{desc}, full_desc=#{fullDesc}, tags=#{tags}, sales=#{sales}, hot=#{hot}, status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM products WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM products WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM products
+    </select>
+
+    <select id="countByCategory" resultType="int">
+        SELECT COUNT(*) FROM products WHERE category = #{category} AND status = 1
+    </select>
+
+    <select id="countByCategoryAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM products WHERE category = #{category} AND status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR desc LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM products WHERE status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR category LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <update id="increaseSales">
+        UPDATE products SET sales = sales + #{quantity} WHERE id = #{productId}
+    </update>
+</mapper>

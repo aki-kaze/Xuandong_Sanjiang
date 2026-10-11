@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.PostMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Post">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="author" property="author"/>
+        <result column="avatar" property="avatar"/>
+        <result column="content" property="content"/>
+        <result column="cover_img" property="coverImg"/>
+        <result column="images" property="images"/>
+        <result column="likes" property="likes"/>
+        <result column="comments" property="comments"/>
+        <result column="tags" property="tags"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+        <result column="nickname" property="nickname"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT p.*, COALESCE(u.nickname, p.author, '匿名用户') as nickname
+        FROM posts p
+        LEFT JOIN users u ON p.user_id = u.id
+        <where>
+            <if test="searchKey != null and searchKey != ''">
+                AND (p.content LIKE CONCAT('%', #{searchKey}, '%') OR p.author LIKE CONCAT('%', #{searchKey}, '%') OR u.nickname LIKE CONCAT('%', #{searchKey}, '%'))
+            </if>
+            <if test="status != null">
+                AND p.status = #{status}
+            </if>
+        </where>
+        ORDER BY p.created_at DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT * FROM posts WHERE user_id = #{userId} ORDER BY created_at DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT p.*, COALESCE(u.nickname, p.author, '匿名用户') as nickname
+        FROM posts p
+        LEFT JOIN users u ON p.user_id = u.id
+        WHERE p.id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Post" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO posts (user_id, author, avatar, content, cover_img, images, tags, status, likes, comments)
+        VALUES (#{userId}, #{author}, #{avatar}, #{content}, #{coverImg}, #{images}, #{tags}, #{status}, #{likes}, #{comments})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Post">
+        UPDATE posts SET user_id=#{userId}, author=#{author}, avatar=#{avatar}, content=#{content},
+        cover_img=#{coverImg}, images=#{images}, tags=#{tags}, status=#{status}, likes=#{likes}, comments=#{comments}
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE posts SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="updateRecommendation">
+        UPDATE posts SET is_recommended = #{isRecommended} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM posts WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM posts
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM posts WHERE status = #{status}
+    </select>
+</mapper>

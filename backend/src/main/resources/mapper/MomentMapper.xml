@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.MomentMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Moment">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="nickname" property="nickname"/>
+        <result column="avatar" property="avatar"/>
+        <result column="content" property="content"/>
+        <result column="cover_img" property="coverImg"/>
+        <result column="images" property="images"/>
+        <result column="tags" property="tags"/>
+        <result column="likes" property="likes"/>
+        <result column="comments" property="comments"/>
+        <result column="status" property="status"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT m.*,
+               COALESCE(u.nickname, m.nickname) as nickname,
+               COALESCE(u.avatar, m.avatar) as avatar
+        FROM moments m
+        LEFT JOIN users u ON m.user_id = u.id
+        <where>
+            <if test="status == null">
+                AND m.status != 3
+            </if>
+            <if test="searchKey != null and searchKey != ''">
+                AND (m.nickname LIKE CONCAT('%', #{searchKey}, '%') OR m.content LIKE CONCAT('%', #{searchKey}, '%') OR u.nickname LIKE CONCAT('%', #{searchKey}, '%'))
+            </if>
+            <if test="status != null">
+                AND m.status = #{status}
+            </if>
+        </where>
+        ORDER BY m.create_time DESC
+    </select>
+
+    <select id="findByStatus" resultMap="BaseResultMap">
+        SELECT m.*,
+               COALESCE(u.nickname, m.nickname) as nickname,
+               COALESCE(u.avatar, m.avatar) as avatar
+        FROM moments m
+        LEFT JOIN users u ON m.user_id = u.id
+        WHERE m.status = #{status}
+        ORDER BY m.create_time DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT m.*,
+               COALESCE(u.nickname, m.nickname) as nickname,
+               COALESCE(u.avatar, m.avatar) as avatar
+        FROM moments m
+        LEFT JOIN users u ON m.user_id = u.id
+        WHERE m.user_id = #{userId} AND m.status != 3
+        ORDER BY m.create_time DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT m.*,
+               COALESCE(u.nickname, m.nickname) as nickname,
+               COALESCE(u.avatar, m.avatar) as avatar
+        FROM moments m
+        LEFT JOIN users u ON m.user_id = u.id
+        WHERE m.id = #{id} AND m.status != 3
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Moment" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO moments (user_id, nickname, avatar, content, cover_img, images, tags, likes, comments, status)
+        VALUES (#{userId}, #{nickname}, #{avatar}, #{content}, #{coverImg}, #{images}, #{tags}, #{likes}, #{comments}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Moment">
+        UPDATE moments SET
+            user_id=#{userId}, nickname=#{nickname}, avatar=#{avatar}, content=#{content},
+            cover_img=#{coverImg}, images=#{images}, tags=#{tags}, likes=#{likes},
+            comments=#{comments}, status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <update id="updateStatus">
+        UPDATE moments SET status = #{status} WHERE id = #{id}
+    </update>
+
+    <update id="deleteById">
+        UPDATE moments SET status = 3 WHERE id = #{id}
+    </update>
+
+    <update id="updateLikes">
+        UPDATE moments SET likes = likes + #{delta} WHERE id = #{id}
+    </update>
+
+    <update id="updateComments">
+        UPDATE moments SET comments = comments + #{delta} WHERE id = #{id}
+    </update>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM moments
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM moments WHERE status = #{status}
+    </select>
+</mapper>

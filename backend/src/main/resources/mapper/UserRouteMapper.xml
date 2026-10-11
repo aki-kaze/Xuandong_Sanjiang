@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.UserRouteMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.UserRoute">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="days" property="days"/>
+        <result column="distance" property="distance"/>
+        <result column="budget" property="budget"/>
+        <result column="daily" property="daily"/>
+        <result column="attractions" property="attractions"/>
+        <result column="hotels" property="hotels"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="people" property="people"/>
+        <result column="transport" property="transport"/>
+        <result column="status" property="status"/>
+        <result column="cover" property="cover"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM user_routes ORDER BY created_at DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT * FROM user_routes WHERE user_id = #{userId} ORDER BY created_at DESC
+    </select>
+
+    <select id="findByConditions" resultMap="BaseResultMap">
+        SELECT * FROM user_routes
+        <where>
+            <if test="keyword != null and keyword != ''">
+                AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId}
+            </if>
+            <if test="status != null and status != ''">
+                AND status = #{status}
+            </if>
+        </where>
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM user_routes WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.UserRoute" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user_routes (
+            user_id, name, description, days, distance, budget, 
+            daily, attractions, hotels, start_date, end_date, people, transport, status, cover, created_at, updated_at
+        )
+        VALUES (
+            #{userId}, #{name}, #{description}, #{days}, #{distance}, #{budget},
+            #{daily}, #{attractions}, #{hotels}, #{startDate}, #{endDate}, #{people}, #{transport}, 
+            COALESCE(#{status}, 1), #{cover}, NOW(), NOW()
+        )
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.UserRoute">
+        UPDATE user_routes 
+        SET name = #{name}, 
+            description = #{description}, 
+            days = #{days}, 
+            distance = #{distance}, 
+            budget = #{budget},
+            daily = #{daily}, 
+            attractions = #{attractions}, 
+            hotels = #{hotels}, 
+            start_date = #{startDate}, 
+            end_date = #{endDate},
+            people = #{people}, 
+            transport = #{transport}, 
+            status = #{status},
+            cover = #{cover},
+            updated_at = NOW()
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM user_routes WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM user_routes
+    </select>
+</mapper>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.HotelMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Hotel">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="type" property="type"/>
+        <result column="rating" property="rating"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="cover" property="cover"/>
+        <result column="tags" property="tags"/>
+        <result column="description" property="description"/>
+        <result column="facilities" property="facilities"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM hotels WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM hotels ORDER BY id ASC
+    </select>
+
+    <select id="findByType" resultMap="BaseResultMap">
+        SELECT * FROM hotels WHERE status = 1 AND type = #{type} ORDER BY id ASC
+    </select>
+
+    <select id="findByTypeAndKeyword" resultMap="BaseResultMap">
+        SELECT * FROM hotels WHERE status = 1 AND type = #{type}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM hotels WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR type LIKE CONCAT('%', #{keyword}, '%')) ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM hotels WHERE id = #{id} AND status = 1
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Hotel" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO hotels (name, type, rating, price, address, cover, tags, description, facilities, lat, lng, status)
+        VALUES (#{name}, #{type}, #{rating}, #{price}, #{address}, #{cover}, #{tags}, #{description}, #{facilities}, #{lat}, #{lng}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Hotel">
+        UPDATE hotels SET name=#{name}, type=#{type}, rating=#{rating}, price=#{price}, address=#{address}, cover=#{cover}, tags=#{tags}, description=#{description}, facilities=#{facilities}, lat=#{lat}, lng=#{lng}, status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM hotels WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM hotels WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM hotels
+    </select>
+
+    <select id="countByType" resultType="int">
+        SELECT COUNT(*) FROM hotels WHERE type = #{type} AND status = 1
+    </select>
+
+    <select id="countByTypeAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM hotels WHERE type = #{type} AND status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM hotels WHERE status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR type LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+</mapper>

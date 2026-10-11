@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.AttractionMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Attraction">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="category" property="category"/>
+        <result column="rating" property="rating"/>
+        <result column="price" property="price"/>
+        <result column="address" property="address"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="cover" property="cover"/>
+        <result column="images" property="images"/>
+        <result column="tags" property="tags"/>
+        <result column="description" property="description"/>
+        <result column="open_time" property="openTime"/>
+        <result column="phone" property="phone"/>
+        <result column="tips" property="tips"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM attractions WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM attractions ORDER BY id ASC
+    </select>
+
+    <select id="findByCategory" resultMap="BaseResultMap">
+        SELECT * FROM attractions WHERE status = 1 AND category = #{category}
+    </select>
+
+    <select id="findByCategoryAndKeyword" resultMap="BaseResultMap">
+        SELECT * FROM attractions WHERE status = 1 AND category = #{category}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM attractions 
+        WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM attractions WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Attraction" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO attractions (name, category, rating, price, address, lat, lng, cover, images, tags, description, open_time, phone, tips, status)
+        VALUES (#{name}, #{category}, #{rating}, #{price}, #{address}, #{lat}, #{lng}, #{cover}, #{images}, #{tags}, #{description}, #{openTime}, #{phone}, #{tips}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Attraction">
+        UPDATE attractions SET name=#{name}, category=#{category}, rating=#{rating}, price=#{price}, address=#{address},
+        lat=#{lat}, lng=#{lng}, cover=#{cover}, images=#{images}, tags=#{tags}, description=#{description},
+        open_time=#{openTime}, phone=#{phone}, tips=#{tips}, status=#{status} WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM attractions WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM attractions WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM attractions
+    </select>
+
+    <select id="countByCategory" resultType="int">
+        SELECT COUNT(*) FROM attractions WHERE status = 1 AND category = #{category}
+    </select>
+
+    <select id="countByCategoryAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM attractions WHERE status = 1 AND category = #{category}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM attractions
+        WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+</mapper>

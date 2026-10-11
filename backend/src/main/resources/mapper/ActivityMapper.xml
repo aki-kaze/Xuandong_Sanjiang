@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.ActivityMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Activity">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="cover" property="cover"/>
+        <result column="description" property="description"/>
+        <result column="location" property="location"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="max_participants" property="maxParticipants"/>
+        <result column="current_participants" property="currentParticipants"/>
+        <result column="status" property="status"/>
+        <result column="is_published" property="isPublished"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM activities ORDER BY id ASC
+    </select>
+
+    <select id="findByStatus" resultMap="BaseResultMap">
+        SELECT * FROM activities WHERE status = #{status} ORDER BY id ASC
+    </select>
+
+    <select id="findPublished" resultMap="BaseResultMap">
+        SELECT * FROM activities WHERE is_published = 1 ORDER BY create_time DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM activities WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Activity" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO activities (title, cover, description, location, lat, lng, start_time, end_time, max_participants, current_participants, status, is_published)
+        VALUES (#{title}, #{cover}, #{description}, #{location}, #{lat}, #{lng}, #{startTime}, #{endTime}, #{maxParticipants}, #{currentParticipants}, #{status}, #{isPublished})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Activity">
+        UPDATE activities SET
+            title=#{title},
+            cover=#{cover},
+            description=#{description},
+            location=#{location},
+            lat=#{lat},
+            lng=#{lng},
+            start_time=#{startTime},
+            end_time=#{endTime},
+            max_participants=#{maxParticipants},
+            current_participants=#{currentParticipants},
+            status=#{status},
+            is_published=#{isPublished}
+        WHERE id=#{id}
+    </update>
+
+    <update id="updatePublishStatus">
+        UPDATE activities SET is_published = #{isPublished} WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM activities WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM activities
+    </select>
+</mapper>

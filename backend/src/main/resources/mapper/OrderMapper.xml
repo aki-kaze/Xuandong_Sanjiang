@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.OrderMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Order">
+        <id column="id" property="id"/>
+        <result column="order_no" property="orderNo"/>
+        <result column="user_id" property="userId"/>
+        <result column="type" property="type"/>
+        <result column="item_id" property="itemId"/>
+        <result column="item_name" property="itemName"/>
+        <result column="quantity" property="quantity"/>
+        <result column="price" property="price"/>
+        <result column="total_price" property="totalPrice"/>
+        <result column="status" property="status"/>
+        <result column="verify_code" property="verifyCode"/>
+        <result column="verify_time" property="verifyTime"/>
+        <result column="contact_name" property="contactName"/>
+        <result column="contact_phone" property="contactPhone"/>
+        <result column="visit_date" property="visitDate"/>
+        <result column="remark" property="remark"/>
+        <result column="pay_type" property="payType"/>
+        <result column="transaction_id" property="transactionId"/>
+        <result column="paid_at" property="paidAt"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM orders ORDER BY id DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT * FROM orders WHERE user_id = #{userId} ORDER BY id DESC
+    </select>
+
+    <select id="findByStatus" resultMap="BaseResultMap">
+        SELECT * FROM orders WHERE status = #{status} ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM orders WHERE id = #{id}
+    </select>
+
+    <select id="findByOrderNo" resultMap="BaseResultMap">
+        SELECT * FROM orders WHERE order_no = #{orderNo}
+    </select>
+
+    <select id="findByVerifyCode" resultMap="BaseResultMap">
+        SELECT * FROM orders WHERE verify_code = #{verifyCode}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Order" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO orders (order_no, user_id, type, item_id, item_name, quantity, price, total_price, status, verify_code, contact_name, contact_phone, visit_date, remark)
+        VALUES (#{orderNo}, #{userId}, #{type}, #{itemId}, #{itemName}, #{quantity}, #{price}, #{totalPrice}, #{status}, #{verifyCode}, #{contactName}, #{contactPhone}, #{visitDate}, #{remark})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Order">
+        UPDATE orders
+        <set>
+            <if test="status != null">status=#{status},</if>
+            <if test="verifyTime != null">verify_time=#{verifyTime},</if>
+            <if test="paidAt != null">paid_at=#{paidAt},</if>
+            <if test="payType != null">pay_type=#{payType},</if>
+            <if test="transactionId != null">transaction_id=#{transactionId},</if>
+            <if test="contactName != null">contact_name=#{contactName},</if>
+            <if test="contactPhone != null">contact_phone=#{contactPhone},</if>
+            <if test="visitDate != null">visit_date=#{visitDate},</if>
+            <if test="remark != null">remark=#{remark},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        DELETE FROM orders WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM orders
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM orders WHERE status = #{status}
+    </select>
+
+    <select id="countByUserId" resultType="int">
+        SELECT COUNT(*) FROM orders WHERE user_id = #{userId}
+    </select>
+
+    <select id="countToday" resultType="int">
+        SELECT COUNT(*) FROM orders WHERE DATE(created_at) = CURDATE()
+    </select>
+
+    <select id="sumRevenue" resultType="java.lang.Double">
+        SELECT IFNULL(SUM(total_price), 0) FROM orders WHERE status IN ('paid', 'used', 'completed')
+    </select>
+</mapper>

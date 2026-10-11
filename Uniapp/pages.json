@@ -1,0 +1,422 @@
+{
+	"pages": [
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "寻侗三江",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/test/auth-test",
+			"style": {
+				"navigationBarTitleText": "登录测试",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/map/map",
+			"style": {
+				"navigationBarTitleText": "地图导航",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/map/offline-nav",
+			"style": {
+				"navigationBarTitleText": "离线导航",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/heritage/heritage",
+			"style": {
+				"navigationBarTitleText": "非遗文化",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/heritage/video",
+			"style": {
+				"navigationBarTitleText": "视频播放",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/heritage/heritage-map",
+			"style": {
+				"navigationBarTitleText": "非遗地图",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/ai/ai",
+			"style": {
+				"navigationBarTitleText": "AI侗乡助手",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/discover/discover",
+			"style": {
+				"navigationBarTitleText": "侗乡社区",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/discover/activity-detail",
+			"style": {
+				"navigationBarTitleText": "活动详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/discover/detail",
+			"style": {
+				"navigationBarTitleText": "帖子详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/discover/guide-detail",
+			"style": {
+				"navigationBarTitleText": "攻略详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "我的",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/attraction/list",
+			"style": {
+				"navigationBarTitleText": "景点列表",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/attraction/detail",
+			"style": {
+				"navigationBarTitleText": "景点详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/activity/list",
+			"style": {
+				"navigationBarTitleText": "活动列表",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/activity/detail",
+			"style": {
+				"navigationBarTitleText": "活动详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/ticket/ticket",
+			"style": {
+				"navigationBarTitleText": "购票预订",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/ticket/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/order",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/ticket-order",
+			"style": {
+				"navigationBarTitleText": "景点订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/experience-order",
+			"style": {
+				"navigationBarTitleText": "非遗订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/food-order",
+			"style": {
+				"navigationBarTitleText": "美食订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/hotel-order",
+			"style": {
+				"navigationBarTitleText": "酒店订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/product-order",
+			"style": {
+				"navigationBarTitleText": "特产订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/pending-order",
+			"style": {
+				"navigationBarTitleText": "待支付订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/pending-use",
+			"style": {
+				"navigationBarTitleText": "待使用订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/completed-order",
+			"style": {
+				"navigationBarTitleText": "已完成订单",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/order/detail",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/food/food",
+			"style": {
+				"navigationBarTitleText": "侗乡美食",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/food/detail",
+			"style": {
+				"navigationBarTitleText": "美食详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/hotel/hotel",
+			"style": {
+				"navigationBarTitleText": "住宿预订",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/hotel/detail",
+			"style": {
+				"navigationBarTitleText": "酒店详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/route/route",
+			"style": {
+				"navigationBarTitleText": "路线规划",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/route/custom-route",
+			"style": {
+				"navigationBarTitleText": "定制旅游规划",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/route/route-detail",
+			"style": {
+				"navigationBarTitleText": "路线详情",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/register/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "搜索",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/favorite/favorite",
+			"style": {
+				"navigationBarTitleText": "我的收藏",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/follow/follow",
+			"style": {
+				"navigationBarTitleText": "我的关注",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/setting/setting",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/shop/shop",
+			"style": {
+				"navigationBarTitleText": "侗乡特产",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/heritage/passport",
+			"style": {
+				"navigationBarTitleText": "非遗护照",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/heritage/experience-book",
+			"style": {
+				"navigationBarTitleText": "体验预约",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		},
+		{
+			"path": "pages/footprint/footprint",
+			"style": {
+				"navigationBarTitleText": "我的足迹",
+				"navigationBarBackgroundColor": "#1D3B5A",
+				"navigationBarTextStyle": "white"
+			}
+		}
+	],
+	"tabBar": {
+	    "color": "#999999",
+	    "selectedColor": "#A33B32",
+	    "borderStyle": "black",
+	    "backgroundColor": "#FDFCF8",
+	    "list": [
+	      {
+	        "pagePath": "pages/index/index",
+	        "text": "首页",
+	        "iconPath": "/static/icons/home.png", 
+	        "selectedIconPath": "/static/icons/home-active.png" 
+	      },
+	      {
+	        "pagePath": "pages/heritage/heritage",
+	        "text": "非遗",
+	        "iconPath": "/static/icons/heritage.png",
+	        "selectedIconPath": "/static/icons/heritage-active.png"
+	      },
+	      {
+	        "pagePath": "pages/ai/ai",
+	        "text": "AI助手",
+	        "iconPath": "/static/icons/ai.png",
+	        "selectedIconPath": "/static/icons/ai-active.png"
+	      },
+	      {
+	        "pagePath": "pages/discover/discover",
+	        "text": "社区",
+	        "iconPath": "/static/icons/discover.png",
+	        "selectedIconPath": "/static/icons/discover-active.png"
+	      },
+	      {
+	        "pagePath": "pages/mine/mine",
+	        "text": "我的",
+	        "iconPath": "/static/icons/mine.png",
+	        "selectedIconPath": "/static/icons/mine-active.png"
+	      }
+	    ]
+	  },
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "寻侗三江",
+		"navigationBarBackgroundColor": "#1D3B5A",
+		"backgroundColor": "#FDFCF8"
+	},
+	"permission": {
+		"scope.userLocation": {
+			"desc": "用于地图导航和路线规划，推荐就近的侗族非遗景点"
+		}
+	},
+	"uniIdRouter": {}
+}

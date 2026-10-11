@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.JourneyMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Journey">
+        <id column="id" property="id"/>
+        <result column="user_id" property="userId"/>
+        <result column="name" property="name"/>
+        <result column="cover" property="cover"/>
+        <result column="city" property="city"/>
+        <result column="days" property="days"/>
+        <result column="people" property="people"/>
+        <result column="start_date" property="startDate"/>
+        <result column="end_date" property="endDate"/>
+        <result column="status" property="status"/>
+        <result column="notes" property="notes"/>
+        <result column="attraction_ids" property="attractionIds"/>
+        <result column="stops" property="stops"/>
+        <result column="hotel_info" property="hotelInfo"/>
+        <result column="cost_breakdown" property="costBreakdown"/>
+        <result column="estimated_cost" property="estimatedCost"/>
+        <result column="is_custom" property="isCustom"/>
+        <result column="tags" property="tags"/>
+        <result column="difficulty" property="difficulty"/>
+        <result column="distance" property="distance"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM journeys ORDER BY id DESC
+    </select>
+
+    <select id="findByUserId" resultMap="BaseResultMap">
+        SELECT * FROM journeys WHERE user_id = #{userId} ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM journeys WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Journey" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO journeys (user_id, name, cover, city, days, people, start_date, end_date, status, notes,
+            attraction_ids, stops, hotel_info, cost_breakdown, estimated_cost, is_custom, tags, difficulty, distance)
+        VALUES (#{userId}, #{name}, #{cover}, #{city}, #{days}, #{people}, #{startDate}, #{endDate}, #{status}, #{notes},
+            #{attractionIds}, #{stops}, #{hotelInfo}, #{costBreakdown}, #{estimatedCost}, #{isCustom}, #{tags}, #{difficulty}, #{distance})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Journey">
+        UPDATE journeys SET
+            user_id=#{userId}, name=#{name}, cover=#{cover}, city=#{city}, days=#{days}, people=#{people},
+            start_date=#{startDate}, end_date=#{endDate}, status=#{status}, notes=#{notes},
+            attraction_ids=#{attractionIds}, stops=#{stops}, hotel_info=#{hotelInfo},
+            cost_breakdown=#{costBreakdown}, estimated_cost=#{estimatedCost}, is_custom=#{isCustom},
+            tags=#{tags}, difficulty=#{difficulty}, distance=#{distance}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM journeys WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM journeys
+    </select>
+
+    <select id="countByUserId" resultType="int">
+        SELECT COUNT(*) FROM journeys WHERE user_id = #{userId}
+    </select>
+</mapper>

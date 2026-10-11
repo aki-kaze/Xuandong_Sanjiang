@@ -1,0 +1,100 @@
+{
+    "name": "寻侗三江",
+    "appid": "__UNI__BF5BF40",
+    "description": "探索广西三江侗族自治县，感受侗族千年文化",
+    "versionName": "1.0.0",
+    "versionCode": "100",
+    "transformPx": false,
+    "pages": ["pages/index/index"],
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    },
+    "app-plus": {
+        "usingComponents": true,
+        "nvueStyleCompiler": "uni-app",
+        "compilerVersion": 3,
+        "splashscreen": {
+            "alwaysShowBeforeRender": true,
+            "waiting": true,
+            "autoclose": true,
+            "delay": 0
+        },
+        "modules": {
+            "OAuth": {}
+        },
+        "distribute": {
+            "android": {
+                "permissions": [
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>"
+                ]
+            },
+            "ios": {},
+            "sdkConfigs": {}
+        },
+        "univerifyStyle": {
+            "fullScreen": false
+        }
+    },
+    "quickapp": {},
+    "mp-weixin": {
+        "appid": "wxb536d3e51941c674",
+        "setting": {
+            "urlCheck": false,
+            "es6": true,
+            "enhance": false,
+            "minified": true,
+            "debug": false,
+            "postcss": true,
+            "minifyWXSS": true,
+            "minifyWXML": true
+        },
+        "usingComponents": true,
+        "debug": false,
+        "permission": {
+            "scope.userLocation": {
+                "desc": "用于地图导航和路线规划，推荐就近的侗族非遗景点"
+            }
+        },
+		"requiredPrivateInfos": [
+		    "getLocation",
+		    "onLocationChange"
+		  ],
+        "plugins": {
+            "route-plan": {
+                "version": "2.2.3",
+                "provider": "wx50b5593e81dd937a"
+            }
+        }
+    },
+    "mp-alipay": {
+        "usingComponents": true
+    },
+    "mp-baidu": {
+        "usingComponents": true
+    },
+    "mp-toutiao": {
+        "usingComponents": true
+    },
+    "uniStatistics": {
+        "enable": false
+    },
+    "vueVersion": "3"
+}

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.User">
+        <id column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="nickname" property="nickname"/>
+        <result column="name" property="name"/>
+        <result column="avatar" property="avatar"/>
+        <result column="phone" property="phone"/>
+        <result column="password" property="password"/>
+        <result column="gender" property="gender"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT id, openid, nickname, name, avatar, phone, password, gender, status, created_at, updated_at
+        FROM users ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT id, openid, nickname, name, avatar, phone, password, gender, status, created_at, updated_at
+        FROM users
+        WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
+           OR phone LIKE CONCAT('%', #{keyword}, '%')
+           OR name LIKE CONCAT('%', #{keyword}, '%')
+        ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT id, openid, nickname, name, avatar, phone, password, gender, status, created_at, updated_at
+        FROM users WHERE id = #{id}
+    </select>
+
+    <select id="findByOpenid" resultMap="BaseResultMap">
+        SELECT * FROM users WHERE openid = #{openid}
+    </select>
+
+    <select id="findByPhone" resultMap="BaseResultMap">
+        SELECT * FROM users WHERE phone = #{phone}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO users (openid, nickname, name, avatar, phone, password, gender, status)
+        VALUES (#{openid}, #{nickname}, #{name}, #{avatar}, #{phone}, #{password}, #{gender}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.User">
+        UPDATE users 
+        <set>
+            <if test="nickname != null">nickname=#{nickname},</if>
+            <if test="name != null">name=#{name},</if>
+            <if test="avatar != null">avatar=#{avatar},</if>
+            <if test="phone != null">phone=#{phone},</if>
+            <if test="password != null">password=#{password},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="status != null">status=#{status},</if>
+        </set>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM users
+    </select>
+
+    <select id="countSearch" resultType="int">
+        SELECT COUNT(*) FROM users
+        WHERE nickname LIKE CONCAT('%', #{keyword}, '%')
+           OR phone LIKE CONCAT('%', #{keyword}, '%')
+           OR name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+    <update id="updateMomentsAvatar">
+        UPDATE moments SET avatar = #{avatar} WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateCommentsAvatar">
+        UPDATE comments SET avatar = #{avatar} WHERE user_id = #{userId}
+    </update>
+
+    <select id="countToday" resultType="int">
+        SELECT COUNT(*) FROM users WHERE DATE(created_at) = CURDATE()
+    </select>
+</mapper>

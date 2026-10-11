@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.HeritageMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Heritage">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="level" property="level"/>
+        <result column="icon" property="icon"/>
+        <result column="color" property="color"/>
+        <result column="cover" property="cover"/>
+        <result column="description" property="description"/>
+        <result column="detail" property="detail"/>
+        <result column="timeline" property="timeline"/>
+        <result column="skill_desc" property="skillDesc"/>
+        <result column="inheritor_name" property="inheritorName"/>
+        <result column="inheritor_title" property="inheritorTitle"/>
+        <result column="inheritor_story" property="inheritorStory"/>
+        <result column="story" property="story"/>
+        <result column="story_author" property="storyAuthor"/>
+        <result column="related_ticket_ids" property="relatedTicketIds"/>
+        <result column="audio_url" property="audioUrl"/>
+        <result column="video_url" property="videoUrl"/>
+        <result column="lat" property="lat"/>
+        <result column="lng" property="lng"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM heritage WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM heritage ORDER BY id ASC
+    </select>
+
+    <select id="findByLevel" resultMap="BaseResultMap">
+        SELECT * FROM heritage WHERE status = 1 AND level = #{level} ORDER BY id ASC
+    </select>
+
+    <select id="findByLevelAndKeyword" resultMap="BaseResultMap">
+        SELECT * FROM heritage WHERE status = 1 AND level = #{level}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+        ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM heritage WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR level LIKE CONCAT('%', #{keyword}, '%')) ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT * FROM heritage WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Heritage" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO heritage (name, level, icon, color, cover, description, detail, timeline, skill_desc, inheritor_name, inheritor_title, inheritor_story, story, story_author, related_ticket_ids, audio_url, video_url, lat, lng, status)
+        VALUES (#{name}, #{level}, #{icon}, #{color}, #{cover}, #{description}, #{detail}, #{timeline}, #{skillDesc}, #{inheritorName}, #{inheritorTitle}, #{inheritorStory}, #{story}, #{storyAuthor}, #{relatedTicketIds}, #{audioUrl}, #{videoUrl}, #{lat}, #{lng}, #{status})
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Heritage">
+        UPDATE heritage SET name=#{name}, level=#{level}, icon=#{icon}, color=#{color}, cover=#{cover}, description=#{description},
+        detail=#{detail}, timeline=#{timeline}, skill_desc=#{skillDesc}, inheritor_name=#{inheritorName}, inheritor_title=#{inheritorTitle},
+        inheritor_story=#{inheritorStory}, story=#{story}, story_author=#{storyAuthor}, related_ticket_ids=#{relatedTicketIds},
+        audio_url=#{audioUrl}, video_url=#{videoUrl}, lat=#{lat}, lng=#{lng}, status=#{status}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Integer">
+        DELETE FROM heritage WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM heritage WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM heritage
+    </select>
+
+    <select id="countByLevel" resultType="int">
+        SELECT COUNT(*) FROM heritage WHERE level = #{level} AND status = 1
+    </select>
+
+    <select id="countByLevelAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM heritage WHERE level = #{level} AND status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR description LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM heritage WHERE status = 1
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR level LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+</mapper>

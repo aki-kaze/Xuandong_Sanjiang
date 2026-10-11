@@ -1,0 +1,407 @@
+/**
+ * 共享表格样式
+ * 用于统一管理后台各页面的表格显示风格
+ */
+
+// ============ 日期时间单元格 ============
+.datetime-cell,
+.date-cell {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #555;
+  padding: 4px 10px;
+  background: rgba(102, 126, 234, 0.06);
+  border-radius: 8px;
+  border: 1px solid rgba(102, 126, 234, 0.1);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(102, 126, 234, 0.1);
+    border-color: rgba(102, 126, 234, 0.2);
+  }
+}
+
+.datetime-icon,
+.date-icon {
+  font-size: 14px;
+  color: #667eea;
+  flex-shrink: 0;
+}
+
+// ============ 内容单元格 ============
+.content-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.content-text {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.content-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+// ============ 状态标签 ============
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+
+  .status-icon {
+    font-size: 13px;
+  }
+}
+
+// ============ 操作按钮区域 ============
+.action-buttons {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  // 圆形按钮统一尺寸
+  .el-button.is-circle {
+    width: 32px !important;
+    height: 32px !important;
+    padding: 0 !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    border-width: 1.5px;
+
+    .el-icon {
+      font-size: 14px;
+      margin: 0 !important;
+    }
+
+    &:hover {
+      transform: translateY(-2px) scale(1.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+      .el-icon {
+        transform: scale(1.1);
+      }
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  // 各类型按钮颜色增强
+  .el-button--success.is-circle {
+    --el-button-text-color: #67c23a;
+    --el-button-bg-color: rgba(103, 194, 58, 0.08);
+    --el-button-border-color: #67c23a;
+    --el-button-hover-text-color: #ffffff;
+    --el-button-hover-bg-color: #67c23a;
+    --el-button-hover-border-color: #67c23a;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(103, 194, 58, 0.35);
+    }
+  }
+
+  .el-button--warning.is-circle {
+    --el-button-text-color: #e6a23c;
+    --el-button-bg-color: rgba(230, 162, 60, 0.08);
+    --el-button-border-color: #e6a23c;
+    --el-button-hover-text-color: #ffffff;
+    --el-button-hover-bg-color: #e6a23c;
+    --el-button-hover-border-color: #e6a23c;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(230, 162, 60, 0.35);
+    }
+  }
+
+  .el-button--info.is-circle {
+    --el-button-text-color: #909399;
+    --el-button-bg-color: rgba(144, 147, 153, 0.08);
+    --el-button-border-color: #909399;
+    --el-button-hover-text-color: #ffffff;
+    --el-button-hover-bg-color: #909399;
+    --el-button-hover-border-color: #909399;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(144, 147, 153, 0.35);
+    }
+  }
+
+  .el-button--primary.is-circle {
+    --el-button-text-color: #409eff;
+    --el-button-bg-color: rgba(64, 158, 255, 0.08);
+    --el-button-border-color: #409eff;
+    --el-button-hover-text-color: #ffffff;
+    --el-button-hover-bg-color: #409eff;
+    --el-button-hover-border-color: #409eff;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(64, 158, 255, 0.35);
+    }
+  }
+
+  .el-button--danger.is-circle {
+    --el-button-text-color: #f56c6c;
+    --el-button-bg-color: rgba(245, 108, 108, 0.08);
+    --el-button-border-color: #f56c6c;
+    --el-button-hover-text-color: #ffffff;
+    --el-button-hover-bg-color: #f56c6c;
+    --el-button-hover-border-color: #f56c6c;
+
+    &:hover {
+      box-shadow: 0 4px 12px rgba(245, 108, 108, 0.35);
+    }
+  }
+}
+
+// ============ 普通按钮行 ============
+.button-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+
+  .el-icon {
+    margin-right: 5px;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+
+  .el-button:not(.is-circle) {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .el-icon {
+      transition: transform 0.2s ease;
+    }
+
+    &:hover .el-icon {
+      transform: scale(1.15) rotate(-3deg);
+    }
+  }
+}
+
+// ============ 装饰性顶线 ============
+.deco-top-line {
+  height: 3px;
+  background: linear-gradient(90deg, #A33B32, #1D3B5A, #D4A373, #A33B32);
+  background-size: 300% 100%;
+  animation: gradientShift 4s ease infinite;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+// ============ 渐变文字 ============
+.gradient-text {
+  background: linear-gradient(135deg, #1D3B5A 0%, #A33B32 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ============ 毛玻璃卡片 ============
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+}
+
+// ============ 淡入上移动画 ============
+.fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ============ 表格通用样式增强 ============
+.enhanced-table {
+  :deep(.el-table) {
+    border-radius: 12px;
+    overflow: hidden;
+
+    // 表头渐变背景
+    .el-table__header th {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      border: none;
+      padding: 12px 0;
+
+      .cell {
+        color: #fff;
+        font-weight: 600;
+      }
+    }
+
+    // 行样式
+    .el-table__body tr {
+      transition: all 0.25s ease;
+
+      &:hover td {
+        background: rgba(102, 126, 234, 0.04) !important;
+      }
+    }
+
+    // 单元格内边距
+    .el-table__body td {
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    // 斑马纹增强
+    &.el-table--striped .el-table__body tr.el-table__row--striped td {
+      background: rgba(102, 126, 234, 0.02);
+    }
+
+    // 操作列
+    .action-column {
+      .cell {
+        overflow: visible;
+      }
+    }
+  }
+}
+
+// ============ 统计卡片 ============
+.stat-row {
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.stat-icon-wrap {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+
+.stat-card:hover .stat-icon-wrap {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.stat-info {
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1D3B5A;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #999;
+}
+
+// ============ 搜索栏 ============
+.search-bar {
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+// ============ 表格卡片容器 ============
+.table-card {
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+// ============ 分页 ============
+.pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+// ============ 价格显示 ============
+.price-cell {
+  font-size: 14px;
+  font-weight: 600;
+  color: #A33B32;
+}
+
+// ============ 用户信息单元格 ============
+.user-info-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .user-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1D3B5A;
+  }
+
+  .user-id {
+    font-size: 11px;
+    color: #bbb;
+  }
+}
+
+// ============ 互动数据单元格 ============
+.interaction-cell {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #666;
+}

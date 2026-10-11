@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.RouteMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Route">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="duration" property="duration"/>
+        <result column="difficulty" property="difficulty"/>
+        <result column="distance" property="distance"/>
+        <result column="price" property="price"/>
+        <result column="cover" property="cover"/>
+        <result column="tags" property="tags"/>
+        <result column="stops" property="stops"/>
+        <result column="status" property="status"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM routes WHERE status = 1 ORDER BY id ASC
+    </select>
+
+    <select id="findAllAdmin" resultMap="BaseResultMap">
+        SELECT * FROM routes ORDER BY id ASC
+    </select>
+
+    <select id="findByDifficulty" resultMap="BaseResultMap">
+        SELECT * FROM routes WHERE status = 1 AND difficulty = #{difficulty} ORDER BY id ASC
+    </select>
+
+    <select id="search" resultMap="BaseResultMap">
+        SELECT * FROM routes WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR difficulty LIKE CONCAT('%', #{keyword}, '%')) ORDER BY id ASC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap">
+        SELECT * FROM routes WHERE id = #{id}
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Route" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO routes (name, duration, difficulty, distance, price, cover, tags, stops, status, created_at, updated_at)
+        VALUES (
+            #{name}, #{duration}, #{difficulty}, #{distance}, #{price}, #{cover}, #{tags}, #{stops}, COALESCE(#{status}, 1), 
+            NOW(), NOW()
+        )
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Route">
+        UPDATE routes SET name=#{name}, duration=#{duration}, difficulty=#{difficulty}, distance=#{distance}, price=#{price}, cover=#{cover}, tags=#{tags}, stops=#{stops}, status=#{status}, updated_at=NOW()
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM routes WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM routes WHERE status = 1
+    </select>
+
+    <select id="countAllAdmin" resultType="int">
+        SELECT COUNT(*) FROM routes
+    </select>
+
+    <select id="countByDifficulty" resultType="int">
+        SELECT COUNT(*) FROM routes WHERE status = 1 AND difficulty = #{difficulty}
+    </select>
+
+    <select id="countByDifficultyAndKeyword" resultType="int">
+        SELECT COUNT(*) FROM routes WHERE status = 1 AND difficulty = #{difficulty}
+        AND (name LIKE CONCAT('%', #{keyword}, '%') OR difficulty LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+
+    <select id="countByKeyword" resultType="int">
+        SELECT COUNT(*) FROM routes
+        WHERE status = 1 AND (name LIKE CONCAT('%', #{keyword}, '%') OR difficulty LIKE CONCAT('%', #{keyword}, '%'))
+    </select>
+</mapper>

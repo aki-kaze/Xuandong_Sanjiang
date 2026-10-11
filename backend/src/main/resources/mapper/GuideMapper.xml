@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.sanjiang.mapper.GuideMapper">
+    <resultMap id="BaseResultMap" type="org.example.sanjiang.entity.Guide">
+        <id column="id" property="id"/>
+        <result column="title" property="title"/>
+        <result column="desc" property="desc"/>
+        <result column="content" property="content"/>
+        <result column="author" property="author"/>
+        <result column="author_avatar" property="authorAvatar"/>
+        <result column="cover" property="cover"/>
+        <result column="views" property="views"/>
+        <result column="tags" property="tags"/>
+        <result column="tips" property="tips"/>
+        <result column="itinerary" property="itinerary"/>
+        <result column="hot" property="hot"/>
+        <result column="status" property="status"/>
+        <result column="audit_status" property="auditStatus"/>
+        <result column="user_id" property="userId"/>
+        <result column="publish_time" property="publishTime"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+    </resultMap>
+
+    <select id="findAll" resultMap="BaseResultMap">
+        SELECT * FROM guides ORDER BY id DESC
+    </select>
+
+    <select id="findByStatus" resultMap="BaseResultMap">
+        SELECT * FROM guides WHERE status = #{status} ORDER BY id DESC
+    </select>
+
+    <select id="searchByTitle" resultMap="BaseResultMap">
+        SELECT * FROM guides WHERE title LIKE CONCAT('%', #{keyword}, '%') ORDER BY id DESC
+    </select>
+
+    <select id="findById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM guides WHERE id = #{id}
+    </select>
+
+    <!-- 按用户 ID 查询攻略 -->
+    <select id="findByUserId" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT * FROM guides WHERE user_id = #{userId} ORDER BY id DESC
+    </select>
+
+    <insert id="insert" parameterType="org.example.sanjiang.entity.Guide" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO guides (title, `desc`, content, author, author_avatar, cover, views, tags, tips, itinerary, hot, status, audit_status, user_id, publish_time, create_time, update_time)
+        VALUES (#{title}, #{desc}, #{content}, #{author}, #{authorAvatar}, #{cover}, #{views}, #{tags}, #{tips}, #{itinerary}, #{hot}, #{status}, #{auditStatus}, #{userId}, #{publishTime}, NOW(), NOW())
+    </insert>
+
+    <update id="update" parameterType="org.example.sanjiang.entity.Guide">
+        UPDATE guides SET
+            title=#{title},
+            `desc`=#{desc},
+            content=#{content},
+            author=#{author},
+            author_avatar=#{authorAvatar},
+            cover=#{cover},
+            views=#{views},
+            tags=#{tags},
+            tips=#{tips},
+            itinerary=#{itinerary},
+            hot=#{hot},
+            status=#{status},
+            audit_status=#{auditStatus},
+            publish_time=#{publishTime},
+            update_time=NOW()
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM guides WHERE id = #{id}
+    </delete>
+
+    <select id="countAll" resultType="int">
+        SELECT COUNT(*) FROM guides
+    </select>
+
+    <select id="countByStatus" resultType="int">
+        SELECT COUNT(*) FROM guides WHERE status = #{status}
+    </select>
+
+    <select id="findByAuditStatus" resultMap="BaseResultMap">
+        SELECT * FROM guides WHERE audit_status = #{auditStatus} ORDER BY id DESC
+    </select>
+
+    <select id="countByAuditStatus" resultType="int">
+        SELECT COUNT(*) FROM guides WHERE audit_status = #{auditStatus}
+    </select>
+
+    <select id="countByTitle" resultType="int">
+        SELECT COUNT(*) FROM guides WHERE title LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+</mapper>

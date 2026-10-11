@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "name": "侗族腌鱼/腌肉",
+    "category": "传统腌制",
+    "price": "58元",
+    "rating": "4.8",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-f37e50c9-e052-4485-8e58-128c75c91fc4.jpg",
+    "description": "侗族腌鱼是三江最具特色的传统美食，将新鲜鱼类或猪肉用糯米、辣椒、盐等腌制而成，存放数年不坏，味道鲜美独特，是侗族人待客的最高礼遇。",
+    "tags": ["非遗美食", "传统腌制", "下饭神器"],
+    "latitude": 25.8234,
+    "longitude": 109.5678,
+    "address": "三江侗族自治县林溪镇程阳村",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "侗家私房土菜馆", "latitude": 25.7843, "longitude": 109.6101, "address": "广场北路一街 16 号", "businessHours": "10:00-21:00", "phone": "13877258801", "tag": "人气推荐" },
+      { "name": "老三江土菜馆 (广场店)", "latitude": 25.8235, "longitude": 109.6103, "address": "侗江大道广场北路一街 14 号", "businessHours": "09:00-21:00", "phone": "13877258802", "tag": "老字号" },
+      { "name": "侗寨厨娘打油茶文化体验馆", "latitude": 25.7830, "longitude": 109.6080, "address": "雅柳路 67 号", "businessHours": "08:30-20:30", "phone": "13877258803", "tag": "非遗体验" }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "侗族油茶",
+    "category": "传统饮品",
+    "price": "15元",
+    "rating": "4.7",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-95cbf646-7773-45ef-b73c-7f15c3e6a34f.jpg",
+    "description": "侗族油茶是用茶叶、花生、糯米、葱等食材炒制而成的传统饮品，香浓可口，具有提神醒脑、驱寒暖胃的功效，是侗族人每日必饮的传统饮品。",
+    "tags": ["传统饮品", "非遗", "健康"],
+    "latitude": 25.7856,
+    "longitude": 109.6078,
+    "address": "三江侗族自治县古宜镇侗乡大道",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "侗寨厨娘油茶馆", "latitude": 25.7828, "longitude": 109.6076, "address": "雅柳路 67 号（非遗传承店）", "businessHours": "07:00-20:00", "phone": "13207721993", "tag": "非遗传承" },
+      { "name": "客雨侗菜馆", "latitude": 25.8220, "longitude": 109.5665, "address": "631 县道程阳景区", "businessHours": "08:00-21:00", "phone": "13877258805", "tag": "景区推荐" },
+      { "name": "资味园新派餐厅", "latitude": 25.7816, "longitude": 109.6092, "address": "侗乡大道侗都臻品酒店 2 楼", "businessHours": "09:00-21:30", "phone": "13877258806", "tag": "特色推荐" }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "三江特色糯米饭",
+    "category": "主食",
+    "price": "5元",
+    "rating": "4.6",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-abccf071-6b1f-4839-8917-b52b024d4e44.png",
+    "description": "三江特色糯米饭选用当地优质糯米蒸制而成，配以侗族特色腌菜、腊肉等，软糯香甜，是侗族人的传统主食。",
+    "tags": ["传统主食", "糯米", "特色"],
+    "latitude": 25.7834,
+    "longitude": 109.6078,
+    "address": "三江侗族自治县古宜镇",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "五彩糯米饭非遗体验店", "latitude": 25.7838, "longitude": 109.6084, "address": "福临路旅游集散中心", "businessHours": "06:00-14:00", "phone": "18178279099", "tag": "非遗美食" },
+      { "name": "柳螺锅螺蛳粉 (月亮街店)", "latitude": 25.7856, "longitude": 109.6112, "address": "河东桥头雅谷路 6 号", "businessHours": "06:30-21:00", "phone": "13877258808", "tag": "人气小吃" },
+      { "name": "山羊王羊肉粉", "latitude": 25.7804, "longitude": 109.6070, "address": "侗乡大道 65 号", "businessHours": "07:00-20:00", "phone": "13877258809", "tag": "特色早餐" }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "百草汤（牛瘪汤）",
+    "category": "特色菜",
+    "price": "68元",
+    "rating": "4.8",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-aa79e746-60ba-4f0c-9fd5-29884880856e.png",
+    "description": "侗族宴席贵客菜，用牛胃中半消化的草料汁液调味，煮牛肉 / 牛杂。入口微苦，后有清香，有健胃功效，建议到正规餐馆尝试。",
+    "tags": ["侗族宴席", "待客菜", "特产"],
+    "latitude": 25.7812,
+    "longitude": 109.6045,
+    "address": "三江侗族自治县古宜镇兴宜街",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "侗寨厨娘打油茶文化体验馆", "latitude": 25.7830, "longitude": 109.6080, "address": "雅柳路 67 号", "businessHours": "10:00-21:00", "phone": "13207721993", "tag": "非遗特色" },
+      { "name": "农家小厨火锅城总店", "latitude": 25.7860, "longitude": 109.6116, "address": "古宜镇侗乡大道苏城 15 栋", "businessHours": "10:30-22:00", "phone": "13877258811", "tag": "人气推荐" },
+      { "name": "云宾私房土菜馆 (苏城分店)", "latitude": 25.7798, "longitude": 109.6063, "address": "光明城侗乡大道", "businessHours": "11:00-21:30", "phone": "13877258812", "tag": "特色推荐" }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "三江稻田鱼",
+    "category": "特色宴席",
+    "price": "70元",
+    "rating": "4.9",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-4722b57c-8f87-42ab-8487-03996960a065.jpg",
+    "description": "烤稻花鱼 / 稻草包烤：最具特色，鱼腌制后用稻草裹好慢烤，外皮焦脆，肉汁锁在里面，带着稻禾香气；外酥里嫩、味道鲜、甜、嫩",
+    "tags": ["非遗体验", "特色菜", "待客菜"],
+    "latitude": 25.8234,
+    "longitude": 109.5678,
+    "address": "三江侗族自治县林溪镇程阳村",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "侗寨厨娘打油茶文化体验馆", "latitude": 25.7830, "longitude": 109.6080, "address": "雅柳路 67 号", "businessHours": "10:00-21:00", "phone": "13207721993", "tag": "非遗招牌" },
+      { "name": "柴火记忆柴火鸡", "latitude": 25.7842, "longitude": 109.6087, "address": "月亮街 20 号", "businessHours": "10:30-22:00", "phone": "13877258814", "tag": "烧烤热销榜" },
+      { "name": "朗朗的厨房", "latitude": 25.7852, "longitude": 109.6106, "address": "广场北路 3 街 7 号", "businessHours": "11:00-21:30", "phone": "13877258815", "tag": "特色推荐" }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "百家宴",
+    "category": "特色宴席",
+    "price": "88元",
+    "rating": "4.9",
+    "cover": "https://cdn.phototourl.com/free/2026-03-24-72624b4e-4403-4309-9392-04ed1203abfd.jpg",
+    "description": "摆十米长桌，每家出 2-3 道拿手菜，共享侗家三宝（酸鱼、酸肉、酸鸭）、糯米饭、油茶、百草汤、稻田鱼、腊肉、重阳酒；可自由串桌吃 \"转转菜\"、喝 \"转转酒\"，姑娘们常唱敬酒歌、行高山流水敬酒礼。",
+    "tags": ["非遗体验", "特色宴席", "待客菜"],
+    "latitude": 25.8234,
+    "longitude": 109.5678,
+    "address": "三江侗族自治县林溪镇程阳村鼓楼广场",
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z",
+    "locations": [
+      { "name": "侗乡大食堂", "latitude": 25.7856, "longitude": 109.6108, "address": "三江侗族自治县古宜镇侗乡大道120号", "businessHours": "11:00-14:00 / 17:00-20:00", "phone": "13877258850", "tag": "天天开席" }
+    ]
+  }
+]

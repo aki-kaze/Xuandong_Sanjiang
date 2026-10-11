@@ -1,0 +1,143 @@
+[
+  {
+    "id": 1,
+    "name": "程阳八寨侗族民宿",
+    "type": "特色民宿",
+    "rating": "4.8",
+    "reviewCount": 186,
+    "price": 188,
+    "address": "三江县林溪镇程阳村马安寨",
+    "distance": "5.2km",
+    "latitude": 25.8245,
+    "longitude": 109.5692,
+    "cover": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+    "images": [
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg"
+    ],
+    "tags": ["侗族特色", "景区内", "含早餐"],
+    "description": "位于程阳八寨景区内，全木质侗族传统建筑，可欣赏风雨桥夜景，体验原汁原味的侗族生活。民宿共有 12 间客房，每间都配备现代化设施，同时保留侗族建筑特色。",
+    "facilities": ["WiFi", "停车场", "早餐", "导游服务", "24 小时前台"],
+    "roomTypes": [
+      {
+        "id": 1,
+        "name": "侗族大床房",
+        "desc": "面积 25㎡，大床 2m×2m，木质结构",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 288
+      },
+      {
+        "id": 2,
+        "name": "侗族双床房",
+        "desc": "面积 25㎡，双床 1.2m×2m",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 288
+      },
+      {
+        "id": 3,
+        "name": "观景套房",
+        "desc": "面积 40㎡，大床 2.2m×2m，观景阳台",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 488
+      }
+    ],
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z"
+  },
+  {
+    "id": 2,
+    "name": "侗都臻品酒店",
+    "type": "四星酒店",
+    "rating": "4.5",
+    "reviewCount": 256,
+    "price": 208,
+    "address": "三江县古宜镇滨江路168号",
+    "distance": "1.2km",
+    "latitude": 25.7842,
+    "longitude": 109.6056,
+    "cover": "https://cdn.phototourl.com/member/2026-03-27-74408050-9785-4129-bc66-ecb73029a3c0.jpg",
+    "images": [
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg"
+    ],
+    "tags": ["四星", "市中心", "商务"],
+    "description": "位于三江县城中心，交通便利，设施齐全，是商务出行和家庭旅游的理想选择。酒店拥有 120 间客房，配备餐厅、健身房、会议室等设施。",
+    "facilities": ["WiFi", "停车场", "早餐", "健身房", "会议室", "餐厅", "24 小时前台"],
+    "roomTypes": [
+      {
+        "id": 1,
+        "name": "豪华大床房",
+        "desc": "面积 35㎡，大床 2m×2m",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 388
+      },
+      {
+        "id": 2,
+        "name": "豪华双床房",
+        "desc": "面积 35㎡，双床 1.2m×2m",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 388
+      },
+      {
+        "id": 3,
+        "name": "行政套房",
+        "desc": "面积 60㎡，大床 2.2m×2m，独立会客厅",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 688
+      }
+    ],
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z"
+  },
+  {
+    "id": 3,
+    "name": "布央茶园山居",
+    "type": "精品民宿",
+    "rating": "4.9",
+    "reviewCount": 128,
+    "price": 248,
+    "address": "三江县八江镇布央村仙人山茶园",
+    "distance": "8.5km",
+    "latitude": 25.9225,
+    "longitude": 109.4965,
+    "cover": "https://cdn.phototourl.com/member/2026-03-27-9ecf05f5-ed55-4453-822e-acc3094bf068.jpg",
+    "images": [
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+      "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg"
+    ],
+    "tags": ["茶园景观", "精品", "网红打卡"],
+    "description": "坐落于布央仙人山茶园中，推窗即见云海茶园，提供采茶体验和茶艺课程，是放松身心的绝佳去处。民宿设计融合现代与茶园元素，提供高品质的住宿体验。",
+    "facilities": ["WiFi", "停车场", "早餐", "茶艺体验", "观景台", "茶园游览"],
+    "roomTypes": [
+      {
+        "id": 1,
+        "name": "茶园大床房",
+        "desc": "面积 30㎡，大床 2m×2m，观景窗",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 458
+      },
+      {
+        "id": 2,
+        "name": " loft 套房",
+        "desc": "面积 50㎡，大床 2.2m×2m，复式结构",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 658
+      },
+      {
+        "id": 3,
+        "name": "云海观景房",
+        "desc": "面积 40㎡，大床 2m×2m，全景落地窗",
+        "image": "https://cdn.phototourl.com/member/2026-03-27-41f55c65-23ae-4fb8-940c-9413cda51f87.jpg",
+        "price": 558
+      }
+    ],
+    "status": 1,
+    "created_at": "2026-03-02T17:35:57.000Z",
+    "updated_at": "2026-03-02T17:35:57.000Z"
+  }
+]

@@ -1,0 +1,25 @@
+# Local secrets
+.env*
+!.env.example
+
+# Git metadata and generated dependencies/build output
+.git/
+**/.git/
+**/node_modules/
+**/dist/
+**/target/
+**/unpackage/
+**/.idea/
+**/.claude/
+**/.trae/
+
+# Local logs and editor state
+*.log
+.DS_Store
+Thumbs.db
+
+# Local credentials and database exports
+backend/src/main/resources/application.properties
+admin/setting.json
+backend/database/*.sql
+backend/src/main/resources/sql/*.sql

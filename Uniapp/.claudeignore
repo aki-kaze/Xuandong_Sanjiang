@@ -1,0 +1,109 @@
+# Dependencies
+node_modules/
+vendor/
+.gradle/
+.mvn/
+target/
+
+# Build outputs
+dist/
+build/
+.output/
+.nuxt/
+.next/
+
+# IDE files
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Compiled files
+*.class
+*.jar
+*.war
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Log files
+*.log
+*.log.*
+logs/
+log/
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
+
+# Data files
+*.sql
+*.csv
+*.jsonl
+*.bin
+*.dat
+
+# Media files
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.bmp
+*.tiff
+*.ico
+*.svg
+*.mp3
+*.mp4
+*.avi
+*.flv
+*.mov
+*.webp
+
+# Document files
+*.pdf
+*.docx
+*.doc
+*.xls
+*.xlsx
+*.ppt
+*.pptx
+
+# Archive files
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+*.gz
+
+# Specific project files
+miniprogram/miniprogram.code.js
+
+# Backend specific
+backend/target/
+backend/*.log
+
+# Upload directories
+**/uploads/
+**/static/uploads/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Cache directories
+.cache/
+.parcel-cache/
+.npm/
+.yarn/
