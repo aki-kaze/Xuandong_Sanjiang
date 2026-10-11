@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102c33">
+  <meta name="description" content="寻侗三江文旅平台项目作品集：以 UniApp、Vue 3、Spring Boot 和 Node.js 构建游客服务与运营管理体验。">
+  <title>寻侗三江｜项目作品集</title>
+  <style>
+    :root {
+      --ink: #183339;
+      --muted: #627679;
+      --paper: #f5f7f3;
+      --card: #fffefa;
+      --line: #dfe7e1;
+      --teal: #146a62;
+      --mint: #d5ece1;
+      --orange: #d78654;
+      --dark: #102c33;
+      --dark-2: #183b40;
+      --serif: "Noto Serif SC", "Songti SC", "SimSun", serif;
+      --sans: "Segoe UI", "Microsoft YaHei", sans-serif;
+      --shadow: 0 24px 70px rgba(20, 49, 49, .10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: var(--paper); font-family: var(--sans); line-height: 1.65; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    .shell { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .topbar { position: absolute; inset: 0 0 auto; z-index: 2; color: #e9f3ed; }
+    .topbar-inner { height: 78px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,.15); }
+    .brand { display: flex; gap: 12px; align-items: center; text-decoration: none; font-weight: 700; letter-spacing: .04em; }
+    .brand-mark { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,.6); border-radius: 50% 50% 50% 8px; display: grid; place-items: center; color: #b8e1cb; font-family: var(--serif); }
+    .nav { display: flex; gap: 28px; font-size: 13px; color: #c8d8d4; }
+    .nav a { text-decoration: none; }
+    .nav a:hover { color: white; }
+    .hero { min-height: 690px; padding: 142px 0 72px; color: #eff7f1; overflow: hidden; position: relative; background: radial-gradient(ellipse at 80% 38%, rgba(40,120,102,.50), transparent 37%), linear-gradient(120deg, var(--dark), #164247 72%, #205450); }
+    .hero:before { content: ""; position: absolute; inset: auto -8% -180px 34%; height: 430px; border: 1px solid rgba(207,238,220,.13); border-radius: 50%; transform: rotate(-13deg); }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 68px; position: relative; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #b6dbc8; letter-spacing: .13em; text-transform: uppercase; font-size: 11px; font-weight: 700; }
+    .eyebrow:before { content: ""; width: 22px; height: 1px; background: var(--orange); }
+    h1 { font-family: var(--serif); font-size: clamp(50px, 7vw, 88px); line-height: 1.12; letter-spacing: .04em; margin: 22px 0 18px; font-weight: 600; }
+    .hero-lead { max-width: 540px; color: #d0e0da; font-size: 17px; margin: 0 0 28px; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin: 0 0 30px; }
+    .chip { padding: 7px 12px; border: 1px solid rgba(223,242,231,.24); border-radius: 30px; color: #d5e8df; font-size: 12px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { border-radius: 7px; padding: 12px 18px; font-size: 13px; font-weight: 700; text-decoration: none; transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button-primary { color: var(--dark); background: #c4e5d1; }
+    .button-ghost { color: #edf6ef; border: 1px solid rgba(255,255,255,.32); }
+    .hero-visual { position: relative; min-height: 455px; display: grid; place-items: center; }
+    .hero-orbit { position: absolute; width: 430px; height: 430px; border: 1px solid rgba(215,239,224,.24); border-radius: 50%; }
+    .hero-orbit:before, .hero-orbit:after { content: ""; position: absolute; border: 1px solid rgba(215,239,224,.14); border-radius: 50%; inset: 26px; }
+    .hero-orbit:after { inset: 68px; }
+    .phone-frame { position: relative; height: 430px; width: 218px; border: 7px solid #152327; border-radius: 32px; background: #fff; box-shadow: 0 35px 80px rgba(0,0,0,.35); overflow: hidden; transform: rotate(4deg); }
+    .phone-frame img { height: 100%; width: 100%; object-fit: cover; object-position: top; }
+    .float-note { position: absolute; right: -12px; bottom: 42px; padding: 14px 18px; border: 1px solid rgba(255,255,255,.23); border-radius: 10px; color: #dcebe3; background: rgba(12,38,40,.72); backdrop-filter: blur(10px); font-size: 12px; }
+    .float-note strong { display: block; color: white; font-family: var(--serif); font-size: 20px; }
+    .quickfacts { background: var(--card); border-bottom: 1px solid var(--line); }
+    .facts-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .fact { padding: 25px 20px; border-right: 1px solid var(--line); }
+    .fact:first-child { border-left: 1px solid var(--line); }
+    .fact b { display: block; font-family: var(--serif); font-size: 19px; color: var(--teal); }
+    .fact span { color: var(--muted); font-size: 12px; }
+    section { padding: 100px 0; }
+    .section-kicker { color: var(--orange); text-transform: uppercase; letter-spacing: .14em; font-size: 11px; font-weight: 800; }
+    h2 { margin: 8px 0 16px; font-family: var(--serif); font-weight: 600; font-size: clamp(32px, 4vw, 48px); line-height: 1.23; }
+    .section-intro { max-width: 650px; margin: 0; color: var(--muted); }
+    .intro-head { margin-bottom: 38px; }
+    .goals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+    .goal-card { padding: 26px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
+    .goal-number { color: var(--orange); font-family: var(--serif); font-size: 30px; }
+    .goal-card h3, .feature h3 { margin: 8px 0; font-size: 17px; }
+    .goal-card p, .feature p { color: var(--muted); font-size: 13px; margin: 0; }
+    .flow-section { color: #eaf3ed; background: var(--dark); }
+    .flow-section .section-intro { color: #aec3bc; }
+    .flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 48px; }
+    .flow-step { min-height: 170px; padding: 22px 22px 18px; border-top: 1px solid rgba(220,240,228,.35); position: relative; }
+    .flow-step:not(:last-child):after { content: "→"; position: absolute; top: -17px; right: -8px; padding: 0 5px; color: #9ed1b9; background: var(--dark); }
+    .flow-step span { color: #9ed1b9; font-family: var(--serif); font-size: 13px; }
+    .flow-step h3 { margin: 15px 0 6px; font-size: 16px; }
+    .flow-step p { margin: 0; color: #b6c9c2; font-size: 12px; }
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 42px; }
+    .feature { padding: 28px; border-radius: 13px; border: 1px solid var(--line); background: var(--card); }
+    .feature-index { color: var(--teal); font-size: 11px; font-weight: 800; letter-spacing: .12em; }
+    .feature h3 { font-family: var(--serif); font-size: 22px; }
+    .feature ul { padding-left: 18px; margin: 15px 0 0; color: var(--muted); font-size: 13px; }
+    .feature li { margin: 6px 0; }
+    .gallery { display: grid; grid-template-columns: 1.1fr .9fr; gap: 22px; margin-top: 42px; align-items: stretch; }
+    .gallery-main, .gallery-side figure { margin: 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: #e7ece7; }
+    .gallery-main img { width: 100%; height: 100%; min-height: 310px; object-fit: cover; object-position: top; }
+    .gallery-side { display: grid; grid-template-rows: 1fr 1fr; gap: 22px; }
+    .gallery-side img { width: 100%; height: 100%; min-height: 150px; object-fit: cover; object-position: top; }
+    .gallery-caption { margin-top: 11px; color: var(--muted); font-size: 12px; }
+    .architecture { background: #eaf1ec; }
+    .arch-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 48px; align-items: start; }
+    .arch-stack { display: grid; gap: 12px; }
+    .arch-row { display: grid; grid-template-columns: 155px 1fr; align-items: center; min-height: 78px; padding: 13px 18px; border: 1px solid #d3e0d8; border-radius: 9px; background: rgba(255,255,255,.75); }
+    .arch-row strong { color: var(--teal); font-size: 13px; }
+    .arch-row span { color: var(--muted); font-size: 12px; }
+    .tech-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 44px; }
+    .tech { padding: 17px 18px; border: 1px solid #d3e0d8; border-radius: 9px; background: rgba(255,255,255,.68); }
+    .tech b { display: block; font-size: 13px; }
+    .tech span { color: var(--muted); font-size: 11px; }
+    .video-card { display: grid; grid-template-columns: .72fr 1.28fr; gap: 32px; align-items: center; padding: 30px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+    .video-frame { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 8px; background: #101b1b; }
+    .video-copy p { color: var(--muted); font-size: 13px; }
+    .video-fallback { display: inline-flex; align-items: center; gap: 8px; color: var(--teal); font-size: 13px; font-weight: 700; }
+    .role-card { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; padding: 38px; border-radius: 14px; color: #edf6f0; background: linear-gradient(130deg, #173c40, #28675d); }
+    .role-card h2 { margin-bottom: 10px; }
+    .role-card p { color: #bfd4ca; font-size: 13px; }
+    .role-list { display: grid; gap: 12px; align-content: center; }
+    .role-item { padding: 13px 16px; border: 1px solid rgba(231,246,236,.2); border-radius: 8px; font-size: 12px; color: #d9e9e0; }
+    .role-item b { display: block; margin-bottom: 3px; color: #a9d7bd; font-size: 11px; letter-spacing: .08em; }
+    .role-note { color: #a8c1b6 !important; font-size: 11px !important; }
+    .footer { padding: 35px 0; color: #a8bbb4; background: #0d252b; font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 24px; }
+    .footer a { color: #d7ebe0; }
+    @media (max-width: 800px) {
+      .nav { display: none; }
+      .hero { padding-top: 118px; }
+      .hero-grid, .arch-layout, .video-card, .role-card { grid-template-columns: 1fr; }
+      .hero-grid { gap: 25px; }
+      .hero-visual { min-height: 390px; }
+      .hero-orbit { width: 355px; height: 355px; }
+      .phone-frame { height: 360px; width: 183px; }
+      .facts-grid { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(3) { border-left: 1px solid var(--line); }
+      .goals, .flow, .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-step:nth-child(2):after { display: none; }
+      .gallery { grid-template-columns: 1fr; }
+      .gallery-main img { min-height: 240px; }
+      .gallery-side { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-side img { min-height: 110px; }
+      .video-card { gap: 20px; }
+    }
+    @media (max-width: 520px) {
+      .shell { width: min(100% - 32px, 1160px); }
+      .topbar-inner { height: 64px; }
+      .hero { min-height: 0; padding: 106px 0 44px; }
+      .hero-lead { font-size: 15px; }
+      .hero-visual { min-height: 330px; }
+      .hero-orbit { width: 300px; height: 300px; }
+      .phone-frame { height: 306px; width: 155px; border-width: 5px; border-radius: 24px; }
+      .float-note { right: 0; bottom: 15px; }
+      .facts-grid, .goals, .flow, .features, .tech-grid { grid-template-columns: 1fr; }
+      .fact, .fact:first-child, .fact:nth-child(3) { border-left: 1px solid var(--line); }
+      section { padding: 68px 0; }
+      .flow-step:after { display: none; }
+      .gallery-side { gap: 12px; }
+      .arch-row { grid-template-columns: 1fr; gap: 4px; }
+      .role-card { padding: 25px; }
+      .footer-inner { flex-direction: column; }
+    }
+    @media print {
+      .topbar, .actions, .video-frame { display: none !important; }
+      .hero { min-height: 0; padding: 45px 0; print-color-adjust: exact; }
+      section { padding: 45px 0; break-inside: avoid; }
+      .quickfacts, .flow-section, .role-card, .footer { print-color-adjust: exact; }
+      .shell { width: 100%; }
+      a { text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="#top"><span class="brand-mark">侗</span><span>寻侗三江 <small style="font-weight:400;color:#b6cbc2">/ PROJECT CASE</small></span></a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#overview">项目概览</a><a href="#experience">产品体验</a><a href="#architecture">技术方案</a><a href="#demo">项目演示</a>
+      </nav>
+    </div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="shell hero-grid">
+        <div>
+          <div class="eyebrow">文旅服务平台 · 项目作品集</div>
+          <h1>寻侗<br>三江</h1>
+          <p class="hero-lead">把景区、非遗、美食与出行服务串联起来。一个面向三江侗族自治县旅游场景的小程序与运营平台项目。</p>
+          <div class="hero-meta"><span class="chip">UniApp 小程序</span><span class="chip">Vue 3 管理后台</span><span class="chip">Spring Boot API</span><span class="chip">AI 问答</span></div>
+          <div class="actions"><a class="button button-primary" href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noreferrer">观看项目演示 ↗</a><a class="button button-ghost" href="https://github.com/aki-kaze/Xuandong_Sanjiang" target="_blank" rel="noreferrer">查看 GitHub 源码 ↗</a></div>
+        </div>
+        <div class="hero-visual" aria-label="小程序首页预览">
+          <div class="hero-orbit"></div>
+          <div class="phone-frame"><img src="image/首页.png" alt="寻侗三江小程序首页界面"></div>
+          <div class="float-note"><strong>01 / 体验入口</strong>从目的地内容发现开始</div>
+        </div>
+      </div>
+    </section>
+    <div class="quickfacts">
+      <div class="shell facts-grid">
+        <div class="fact"><b>游客端</b><span>浏览、发现与出行服务</span></div>
+        <div class="fact"><b>运营端</b><span>内容、用户与订单管理</span></div>
+        <div class="fact"><b>业务 API</b><span>统一数据与核心业务接口</span></div>
+        <div class="fact"><b>AI 辅助</b><span>问答与知识库相关能力</span></div>
+      </div>
+    </div>
+
+    <section id="overview">
+      <div class="shell">
+        <div class="intro-head"><div class="section-kicker">01 / Project overview</div><h2>让目的地服务<br>从“找得到”走向“用得上”</h2><p class="section-intro">项目围绕游客出行前后的常见任务组织服务入口：认识目的地、浏览特色内容、规划路线，并进一步连接票务、住宿、餐饮和社区体验。</p></div>
+        <div class="goals">
+          <article class="goal-card"><div class="goal-number">01</div><h3>聚合目的地内容</h3><p>将景点、侗族非遗、美食、特产、酒店与路线等信息放进一致的浏览体验。</p></article>
+          <article class="goal-card"><div class="goal-number">02</div><h3>连接浏览与服务</h3><p>围绕地图导航、路线、门票预订和多类订单页面，串起游客的出行服务流程。</p></article>
+          <article class="goal-card"><div class="goal-number">03</div><h3>支持持续运营</h3><p>用管理后台维护内容与订单，并提供数据概览、社区审核和 AI 知识配置入口。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-section" id="experience">
+      <div class="shell">
+        <div class="section-kicker">02 / User journey</div><h2>一条连贯的游客体验路径</h2><p class="section-intro">以小程序首页作为统一入口，从兴趣浏览逐步过渡到路线与交易服务。</p>
+        <div class="flow">
+          <article class="flow-step"><span>STEP 01</span><h3>发现三江</h3><p>首页推荐、搜索与目的地特色内容。</p></article>
+          <article class="flow-step"><span>STEP 02</span><h3>选择体验</h3><p>浏览景点、非遗、美食、酒店与路线。</p></article>
+          <article class="flow-step"><span>STEP 03</span><h3>规划出行</h3><p>使用地图、行程与路线相关功能。</p></article>
+          <article class="flow-step"><span>STEP 04</span><h3>完成服务</h3><p>进入票务及其他订单，并参与社区互动。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="shell">
+        <div class="section-kicker">03 / Product surfaces</div><h2>一套面向游客，一套面向运营</h2>
+        <div class="features">
+          <article class="feature"><span class="feature-index">TOURIST MINI PROGRAM</span><h3>把地方特色做成可探索的体验</h3><p>游客端围绕目的地首页组织内容入口，让出行信息更容易被发现。</p><ul><li>景点、非遗、美食、酒店、特产与旅游路线</li><li>地图导航、行程、收藏和社区内容</li><li>门票、酒店、美食及其他订单页面</li><li>AI 助手与个人中心</li></ul></article>
+          <article class="feature"><span class="feature-index">OPERATIONS CONSOLE</span><h3>让内容维护与日常运营有处可做</h3><p>管理后台把内容维护、业务数据和审核操作集中在一个工作界面。</p><ul><li>景点、路线、攻略、非遗、商品等内容管理</li><li>用户、评论、社区动态与敏感词管理</li><li>票务、酒店、美食、商品等订单管理</li><li>数据概览、订单分析与 AI 知识库入口</li></ul></article>
+        </div>
+        <div class="gallery">
+          <figure class="gallery-main"><img src="image/后台首页.png" alt="寻侗三江管理后台数据概览" loading="lazy"></figure>
+          <div class="gallery-side">
+            <figure><img src="image/景点管理.png" alt="管理后台景点管理页面" loading="lazy"></figure>
+            <figure><img src="image/AI对话管理.png" alt="管理后台 AI 对话管理页面" loading="lazy"></figure>
+          </div>
+        </div>
+        <div class="gallery-caption">界面截图：运营数据概览、景点内容管理与 AI 对话管理。</div>
+      </div>
+    </section>
+
+    <section class="architecture" id="architecture">
+      <div class="shell arch-layout">
+        <div><div class="section-kicker">04 / Engineering</div><h2>清晰分层，便于协作与迭代</h2><p class="section-intro">项目将游客端、管理端与业务服务拆分，核心 Java API 采用 Controller、Service、Mapper 分层结构；Node.js 服务承载 AI/MCP 辅助能力。</p></div>
+        <div class="arch-stack">
+          <div class="arch-row"><strong>游客端 UniApp</strong><span>目的地浏览 · 地图/行程 · 订单 · 社区 · AI 入口</span></div>
+          <div class="arch-row"><strong>运营端 Vue 3</strong><span>内容维护 · 用户/订单管理 · 数据分析</span></div>
+          <div class="arch-row"><strong>Java API · Spring Boot</strong><span>REST API · MyBatis · 统一业务服务 · Redis 缓存</span></div>
+          <div class="arch-row"><strong>Node.js · Express</strong><span>AI/MCP 辅助接口 · MySQL 数据访问 · Qwen API 配置</span></div>
+          <div class="arch-row"><strong>数据与外部能力</strong><span>MySQL · Redis · 腾讯地图 · AI 服务</span></div>
+        </div>
+      </div>
+      <div class="shell tech-grid">
+        <div class="tech"><b>客户端</b><span>UniApp · Vue</span></div><div class="tech"><b>管理后台</b><span>Vue 3 · Vite · Element Plus</span></div><div class="tech"><b>服务端</b><span>Java 8 · Spring Boot 2.7</span></div><div class="tech"><b>数据访问</b><span>MyBatis · MySQL · Redis</span></div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="shell">
+        <div class="section-kicker">05 / Walkthrough</div><h2>项目演示</h2>
+        <div class="video-card">
+          <div class="video-copy"><h3 style="font-family:var(--serif);font-size:25px;margin:0">看看完整体验</h3><p>通过演示视频了解小程序页面与项目功能流程。若播放器无法内嵌播放，可直接打开哔哩哔哩原视频。</p><a class="video-fallback" href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noreferrer">在哔哩哔哩打开演示 ↗</a></div>
+          <iframe class="video-frame" src="https://player.bilibili.com/player.html?bvid=BV15Apn63EVt&autoplay=0&high_quality=1" title="寻侗三江项目演示视频" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section style="padding-top:0">
+      <div class="shell role-card">
+        <div><div class="section-kicker">Interview notes</div><h2>把你的贡献讲清楚</h2><p>这版案例介绍项目的产品范围与技术结构。正式投递前，请按实际经历补齐个人负责模块和结果，用具体代码、流程或数据支撑。</p><p class="role-note">避免把团队成果全部写成个人成果；没有真实统计数据时，不要填写未经验证的数字。</p></div>
+        <div class="role-list">
+          <div class="role-item"><b>我的职责</b>请补充你实际独立负责或参与的模块。</div>
+          <div class="role-item"><b>解决的难点</b>请补充一个真实的技术问题、你的判断和处理过程。</div>
+          <div class="role-item"><b>项目成果</b>请补充可验证的上线情况、功能完成度或真实数据。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="shell footer-inner"><span>寻侗三江 · 文旅服务平台项目案例</span><span><a href="https://github.com/aki-kaze/Xuandong_Sanjiang" target="_blank" rel="noreferrer">GitHub 源码</a>　·　<a href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noreferrer">项目演示视频</a></span></div>
+  </footer>
+</body>
+</html>
