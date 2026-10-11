@@ -104,7 +104,13 @@
     .tech b { display: block; font-size: 13px; }
     .tech span { color: var(--muted); font-size: 11px; }
     .video-card { display: grid; grid-template-columns: .72fr 1.28fr; gap: 32px; align-items: center; padding: 30px; background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
-    .video-frame { aspect-ratio: 16 / 9; width: 100%; border: 0; border-radius: 8px; background: #101b1b; }
+    .video-preview { aspect-ratio: 16 / 9; width: 100%; min-height: 220px; display: grid; place-items: center; position: relative; overflow: hidden; border-radius: 8px; color: #edf6f0; text-align: center; text-decoration: none; background: radial-gradient(ellipse at 50% 42%, rgba(51,132,112,.55), transparent 42%), linear-gradient(135deg, #102c33, #20544e); }
+    .video-preview:before { content: ""; position: absolute; inset: 18px; border: 1px solid rgba(223,242,231,.2); border-radius: 6px; }
+    .video-preview-content { position: relative; z-index: 1; display: grid; justify-items: center; gap: 9px; padding: 20px; }
+    .video-preview-content strong { font-size: 15px; }
+    .video-preview-content small { color: #c8d8d4; font-size: 12px; }
+    .video-play { width: 58px; height: 58px; display: grid; place-items: center; padding-left: 4px; border-radius: 50%; color: var(--dark); background: #c4e5d1; font-size: 21px; transition: transform .2s; }
+    .video-preview:hover .video-play { transform: scale(1.08); }
     .video-copy p { color: var(--muted); font-size: 13px; }
     .video-fallback { display: inline-flex; align-items: center; gap: 8px; color: var(--teal); font-size: 13px; font-weight: 700; }
     .role-card { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; padding: 38px; border-radius: 14px; color: #edf6f0; background: linear-gradient(130deg, #173c40, #28675d); }
@@ -154,7 +160,7 @@
       .footer-inner { flex-direction: column; }
     }
     @media print {
-      .topbar, .actions, .video-frame { display: none !important; }
+      .topbar, .actions { display: none !important; }
       .hero { min-height: 0; padding: 45px 0; print-color-adjust: exact; }
       section { padding: 45px 0; break-inside: avoid; }
       .quickfacts, .flow-section, .role-card, .footer { print-color-adjust: exact; }
@@ -259,8 +265,8 @@
       <div class="shell">
         <div class="section-kicker">05 / Walkthrough</div><h2>项目演示</h2>
         <div class="video-card">
-          <div class="video-copy"><h3 style="font-family:var(--serif);font-size:25px;margin:0">看看完整体验</h3><p>通过演示视频了解小程序页面与项目功能流程。若播放器无法内嵌播放，可直接打开哔哩哔哩原视频。</p><a class="video-fallback" href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noreferrer">在哔哩哔哩打开演示 ↗</a></div>
-          <iframe class="video-frame" src="https://player.bilibili.com/player.html?bvid=BV15Apn63EVt&autoplay=0&high_quality=1" title="寻侗三江项目演示视频" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div class="video-copy"><h3 style="font-family:var(--serif);font-size:25px;margin:0">看看完整体验</h3><p>部分浏览器或网页预览会拦截哔哩哔哩的跨站内嵌播放器。点击播放卡片将在新标签页打开原视频，确保可以正常观看。</p><a class="video-fallback" href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noopener noreferrer">在哔哩哔哩打开演示 ↗</a></div>
+          <a class="video-preview" href="https://www.bilibili.com/video/BV15Apn63EVt/" target="_blank" rel="noopener noreferrer" aria-label="在新标签页打开哔哩哔哩项目演示视频"><span class="video-preview-content"><span class="video-play" aria-hidden="true">▶</span><strong>在哔哩哔哩观看项目演示</strong><small>点击后将在新标签页播放</small></span></a>
         </div>
       </div>
     </section>
